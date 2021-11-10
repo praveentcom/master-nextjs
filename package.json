@@ -1,0 +1,33 @@
+{
+  "name": "master-api",
+  "version": "1.0.0",
+  "description": "Praveen Thirumurugan's API needs simplified with this personal Master API code repository.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node src local"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praveentcom/master-api-nodejs.git"
+  },
+  "author": "Praveen Thirumurugan",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.1026.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "form-data": "^4.0.0",
+    "fs": "^0.0.1-security",
+    "helmet": "^4.6.0",
+    "http": "^0.0.1-security",
+    "jsonwebtoken": "^8.5.1",
+    "loadash": "^1.0.0",
+    "log4js": "^6.3.0",
+    "mongodb": "^4.1.4",
+    "path": "^0.12.7",
+    "twilio": "^3.71.1"
+  }
+}
