@@ -4,13 +4,10 @@
   "description": "Praveen Thirumurugan's API needs simplified with this personal Master API code repository.",
   "main": "src/index.js",
   "scripts": {
-    "test": "npm test",
-    "start": "node src local"
+    "start": "vercel dev",
+    "deploy": "vercel deploy --prod"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/praveentcom/master-api-nodejs.git"
-  },
+  "repository": "git+https://github.com/praveentcom/master-api-nodejs.git",
   "author": "Praveen Thirumurugan",
   "license": "ISC",
   "dependencies": {
@@ -29,5 +26,8 @@
     "mongodb": "^4.1.4",
     "path": "^0.12.7",
     "twilio": "^3.71.1"
+  },
+  "devDependencies": {
+    "vercel": "^23.1.2"
   }
 }
