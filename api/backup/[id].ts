@@ -1,6 +1,6 @@
 import { VercelRequest, VercelResponse } from "@vercel/node";
 
-const users = ["Bob Smith", "Guillaume Bibeau"];
+const users = [""];
 
 export default (req: VercelRequest, res: VercelResponse) => {
     const { id } = req.query;
