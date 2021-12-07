@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-export default function Header() {
+export default function PostSingle() {
     return (
-        <div className="bg-white shadow-lg overflow-hidden rounded-lg mb-8">
+        <div className="bg-white shadow-lg overflow-hidden rounded-lg">
             <div className="px-6 py-6">
                 <div className="grid grid-cols-8 gap-6">
                     <div className="flex items-center justify-center col-span-2 md:col-span-1">
