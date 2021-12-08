@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Head from 'next/head'
 import Header from './header'
 import Footer from './footer'
 import { getPosts } from '../lib/posts'
