@@ -1,10 +1,7 @@
-import Moment from 'moment'
 import Head from 'next/head'
 import Link from 'next/link'
-import Image from 'next/image'
 import Header from './header'
 import Footer from './footer'
-import { useRouter } from 'next/router'
 import { RWebShare } from 'react-web-share'
 import { getLatestPost, getPosts } from '../lib/posts'
 import { BookOpenIcon, AnnotationIcon, ArrowRightIcon } from '@heroicons/react/solid'
@@ -32,7 +29,7 @@ export default function Home(props) {
             </Head>
 
             <main>
-                <div className="container mx-auto p-4 md:pt-12">
+                <div className="container mx-auto p-4 pt-8 md:pt-12">
                     <Header />
                     <div className="grid grid-cols-12 gap-6 mb-6">
                         <div className="flex items-center justify-center col-span-12 md:col-span-6">

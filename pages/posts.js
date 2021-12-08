@@ -20,7 +20,7 @@ export async function getStaticProps(context) {
 
 export default function Posts(props) {
     return (
-        <div className="container mx-auto p-8 md:pt-12">
+        <div className="container mx-auto p-4 pt-8 md:pt-12">
             <Header />
             <nav class="flex bg-white shadow-lg text-gray-700 py-3 px-5 rounded-lg" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
