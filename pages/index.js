@@ -24,10 +24,25 @@ export default function Home(props) {
     return (
         <div>
             <Head>
+                <meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta property="og:site_name" content="Praveen Thirumurugan" />
+                <meta property="og:type" content="website" />
+                <meta property="og:title" content="Praveen Thirumurugan" />
+                <meta property="og:description" content="Praveen Thirumurugan" />
+                <meta property="og:url" content={'https://www.praveent.com/'} />
+                <meta property="og:image" content="" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Praveen Thirumurugan" />
+                <meta name="twitter:description" content="Praveen Thirumurugan" />
+                <meta name="twitter:url" content="https://www.praveent.com/" />
+                <meta name="twitter:image" content="https://www.praveent.com/_next/image/?url=%2Fimages%2Fwebsite.png" />
+                <meta name="twitter:site" content="@praveentcom" />
+                <meta name="twitter:creator" content="@praveentcom" />
+                <script async defer src="https://sa.praveent.com/latest.js"></script>
                 <title>Praveen Thirumurugan</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
             <main>
                 <div className="container mx-auto p-4 pt-8 md:pt-12">
                     <Header />
