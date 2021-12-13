@@ -2,12 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-html { 
-    background: url(../public/images/background.png) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+@media (min-width: 768px) {
+    html { 
+        background: url(../public/images/background.png) no-repeat center center fixed !important; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+}
+
+html {
+    background: #F8F8F8;
 }
 
 .blog {
@@ -24,12 +30,12 @@ html {
         line-height: 2rem;
     }
 
-    ul {
-        padding-bottom: 16px;
+    ul, ol {
+        padding-bottom: 24px;
         li {
             --tw-text-opacity: 1;
             color: rgba(75, 85, 99, var(--tw-text-opacity));
-            margin-bottom: 24px;
+            margin-bottom: 16px;
         }
     }
 
@@ -46,6 +52,10 @@ html {
 
     img {
         border-radius: 0.8rem;
+    }
+
+    figure {
+        padding-bottom: 24px;
     }
 
     figcaption {
