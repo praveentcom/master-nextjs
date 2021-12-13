@@ -1,6 +1,6 @@
 import Head from 'next/head'
-import Header from './header'
-import Footer from './footer'
+import Header from '../components/header'
+import Footer from '../components/footer'
 import { MailIcon } from '@heroicons/react/solid'
 import { getLatestPost, getPosts } from '../lib/posts'
 
