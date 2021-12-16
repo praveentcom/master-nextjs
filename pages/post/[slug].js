@@ -56,7 +56,7 @@ export default function PostSingle(props) {
             "dateModified": props.post.updated_at,
             "image": {
                 "@type": "ImageObject",
-                "url": props.post ? props.post.featured_image : 'https://www.praveent.com/_next/image/?url=%2Fimages%2Favatar_light.png',
+                "url": props.post ? props.post.feature_image : 'https://www.praveent.com/_next/image/?url=%2Fimages%2Favatar_light.png',
                 "width": 1920,
                 "height": 1080
             },
@@ -78,7 +78,7 @@ export default function PostSingle(props) {
                 <meta property="og:title" content={props.post ? props.post.title : 'Praveen Thirumurugan'} />
                 <meta property="og:description" content={props.post ? props.post.excerpt : 'Praveen Thirumurugan'} />
                 <meta property="og:url" content={'https://www.praveent.com/' + props.post.slug + '/'} />
-                <meta property="og:image" content={props.post ? props.post.featured_image : 'https://www.praveent.com/_next/image/?url=%2Fimages%2Favatar_light.png'} />
+                <meta property="og:image" content={props.post ? props.post.feature_image : 'https://www.praveent.com/_next/image/?url=%2Fimages%2Favatar_light.png'} />
                 <meta property="article:published_time" content={props.post.published_at} />
                 <meta property="article:modified_time" content={props.post.updated_at} />
                 <meta property="article:tag" content={props.post.tags[0].name} />
@@ -86,7 +86,7 @@ export default function PostSingle(props) {
                 <meta name="twitter:title" content={props.post ? props.post.title : 'Praveen Thirumurugan'} />
                 <meta name="twitter:description" content={props.post ? props.post.excerpt : 'Praveen Thirumurugan'} />
                 <meta name="twitter:url" content={'https://www.praveent.com/' + props.post.slug + '/'} />
-                <meta name="twitter:image" content={props.post ? props.post.featured_image : 'https://www.praveent.com/_next/image/?url=%2Fimages%2Favatar_light.png'} />
+                <meta name="twitter:image" content={props.post ? props.post.feature_image : 'https://www.praveent.com/_next/image/?url=%2Fimages%2Favatar_light.png'} />
                 <meta name="twitter:label1" content="Written by" />
                 <meta name="twitter:data1" content="Praveen Thirumurugan" />
                 <meta name="twitter:label2" content="Filed under" />
