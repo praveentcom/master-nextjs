@@ -12,7 +12,7 @@ export default function Header() {
                     <div className="flex items-center justify-between py-4 md:justify-start md:space-x-10">
                         <div className="flex justify-start md:w-0 md:flex-1 md:px-2">
                             <Link href="/">
-                                <a href="/">
+                                <a href="/" style={{height: 48}}>
                                     <span className="sr-only">Praveen Thirumurugan</span>
                                     <Image className="rounded-full" src="/images/avatar_light.png" width={48} height={48} alt="Praveen's avatar"/>
                                 </a>

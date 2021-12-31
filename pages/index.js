@@ -31,7 +31,7 @@ export default function Home() {
                 <div className="container p-4 pt-6 mx-auto max-w-7xl md:px-6">
                     <div className="grid grid-cols-12 gap-6 mb-6">
                         <div className="col-span-12 md:col-span-8">
-                            <div className="mb-6 overflow-hidden md:bg-white md:shadow-lg md:rounded-xl">
+                            <div className="mb-4 overflow-hidden md:bg-white md:shadow-lg md:rounded-xl">
                                 <div className="m-2 md:m-0 md:p-6">
                                     <h1 className="text-2xl font-bold tracking-tight text-gray-600">Hey there, I'm Praveen! 👋🏼</h1>
                                     <p className="pb-2 mt-4 text-gray-500 md:pb-0">
