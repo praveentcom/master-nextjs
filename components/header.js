@@ -10,7 +10,7 @@ export default function Header() {
             <Popover className="relative bg-white border-b-2 border-gray-100">
                 <div className="px-6 mx-auto max-w-7xl">
                     <div className="flex items-center justify-between py-4 md:justify-start md:space-x-10">
-                        <div className="flex justify-start md:w-0 md:flex-1 md:px-2">
+                        <div className="flex justify-start md:w-0 md:flex-1">
                             <Link href="/">
                                 <a href="/" style={{height: 48}}>
                                     <span className="sr-only">Praveen Thirumurugan</span>
