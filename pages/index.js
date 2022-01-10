@@ -1,9 +1,36 @@
 import Head from 'next/head'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import { BriefcaseIcon, HeartIcon } from '@heroicons/react/solid'
+import { BriefcaseIcon, HeartIcon, BookOpenIcon, AnnotationIcon, ArrowRightIcon } from '@heroicons/react/solid'
+import { RWebShare } from 'react-web-share'
+import Link from 'next/link'
+import groq from 'groq'
+import imageUrlBuilder from '@sanity/image-url'
+import client from '../lib/client'
 
-export default function Home() {
+function urlFor (source) {
+    return imageUrlBuilder(client).image(source)
+}
+
+export async function getStaticProps() {
+    const latestPost = await client.fetch(groq`
+        *[_type == "post" && publishedAt < now()] | order(publishedAt desc) [0]{
+            title,
+            "categories": categories[]->title,
+            mainImage,
+            slug,
+            excerpt,
+            readingTime
+        }
+    `)
+    return {
+        props: {
+            latestPost
+        }
+    }
+}
+
+export default function Home({latestPost}) {
     return (
         <div>
             <Head>
@@ -31,7 +58,7 @@ export default function Home() {
                 <div className="container p-4 pt-6 mx-auto max-w-7xl md:px-6">
                     <div className="grid grid-cols-12 gap-6 mb-6">
                         <div className="col-span-12 md:col-span-8">
-                            <div className="mb-4 overflow-hidden md:bg-white md:shadow-lg md:rounded-xl">
+                            <div className="mb-6 overflow-hidden md:bg-white md:shadow-lg md:rounded-xl">
                                 <div className="m-2 md:m-0 md:p-6">
                                     <h1 className="text-2xl font-bold tracking-tight text-gray-600">Hey there, I'm Praveen! 👋🏼</h1>
                                     <p className="pb-2 mt-4 text-gray-500 md:pb-0">
@@ -41,6 +68,55 @@ export default function Home() {
                                     </p>
                                 </div>
                             </div>
+                            {
+                                <div className="mb-4 overflow-hidden bg-white shadow-lg rounded-xl">
+                                    <div className="px-6 pt-4 pb-2 border-b-2 border-gray-100">
+                                        <span className="inline-flex text-sm font-semibold text-gray-500">
+                                            <BookOpenIcon className="w-5 h-5 mr-2 text-gray-400" aria-hidden="true" />
+                                            LATEST ARTICLE
+                                        </span>
+                                    </div>
+                                    <div className="p-6">
+                                        <div className="grid grid-cols-12 gap-6">
+                                            <Link href={`/post/${latestPost.slug.current}`}>
+                                                <div className="flex items-center justify-center col-span-12 md:col-span-5" style={{cursor: 'pointer'}}>
+                                                    <img className="rounded" width="100%" src={latestPost ? urlFor(latestPost.mainImage).width(1920).url() : '/images/avatar_light.png' } alt={latestPost ? latestPost.title : 'Blog image failed to load'}/>
+                                                </div>
+                                            </Link>
+                                            <div className="flex items-center col-span-12 md:col-span-7">
+                                                <div>
+                                                    <Link href={`/post/${latestPost.slug.current}`}>
+                                                        <div style={{cursor: 'pointer'}}>
+                                                            <h4 className="text-xl font-medium leading-6 text-gray-600">{latestPost.title}</h4>
+                                                            <p className="max-w-2xl mt-2 text-gray-500 text-md">{latestPost.excerpt.substring(0, 150) }{ latestPost.excerpt.length >= 150 && `...` }</p>
+                                                        </div>
+                                                    </Link>
+                                                    <div className="mt-2">
+                                                        <Link href={`/post/${latestPost.slug.current}`}>
+                                                            <button type="button" className="inline-flex items-center px-4 py-1 mt-4 mr-4 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
+                                                                <BookOpenIcon className="w-5 h-5 mr-2 -ml-1 text-gray-400" aria-hidden="true" />
+                                                                Read ({latestPost.readingTime + ' min'})
+                                                            </button>
+                                                        </Link>
+                                                        <RWebShare data={{ text: latestPost.title, url: 'https://praveent.com/post/' + latestPost.slug.current, title: latestPost.title, }}>
+                                                            <button type="button" className="inline-flex items-center px-4 py-1 mt-4 mr-4 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
+                                                                <AnnotationIcon className="w-5 h-5 mr-2 -ml-1 text-gray-400" aria-hidden="true" />
+                                                                Share
+                                                            </button>
+                                                        </RWebShare>
+                                                        <Link href="/posts">
+                                                            <button type="button" className="inline-flex items-center px-4 py-1 mt-4 mr-4 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
+                                                                <ArrowRightIcon className="w-5 h-5 mr-2 -ml-1 text-gray-400" aria-hidden="true" />
+                                                                All articles
+                                                            </button>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                         </div>
                         <div className="grid grid-cols-12 col-span-12 md:col-span-4" style={{alignItems: "flex-start", height: "min-content"}}>
                             <div className="col-span-12 mb-6 overflow-hidden bg-white shadow-lg rounded-xl">
