@@ -135,6 +135,9 @@ export default function Home({latestPost}) {
                                             I am currently working with <a style={{textDecorationLine: 'underline'}} href="https://plumhq.com?utm_medium=employee&utm_source=praveent.com&utm_campaign=website" target="_blank">Plum</a> to build India's best health insurance cover for modern companies. <a style={{textDecorationLine: 'underline'}} href="https://plumhq.com/careers?utm_medium=employee&utm_source=praveent.com&utm_campaign=website" target="_blank">Join us</a>.
                                         </p>
                                     </div>
+                                    <div className='flex items-center justify-center m-2 mt-5'>
+                                        <a href="https://www.producthunt.com/posts/plum-lite?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-plum-lite" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=326559&theme=light" alt="Plum Lite - Health benefits for teams as small as 2 in India.  | Product Hunt" style={{width: 180, height: 40}} width="180" height="40" /></a>
+                                    </div>
                                 </div>
                             </div>
                             <div className="col-span-12 overflow-hidden bg-white shadow-lg rounded-xl">
