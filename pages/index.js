@@ -69,7 +69,7 @@ export default function Home({latestPost}) {
                                 </div>
                             </div>
                             {
-                                <div className="mb-4 overflow-hidden bg-white shadow-lg rounded-xl">
+                                <div className="mt-4 overflow-hidden bg-white shadow-lg rounded-xl">
                                     <div className="px-6 pt-4 pb-2 border-b-2 border-gray-100">
                                         <span className="inline-flex text-sm font-semibold text-gray-500">
                                             <BookOpenIcon className="w-5 h-5 mr-2 text-gray-400" aria-hidden="true" />
@@ -136,7 +136,10 @@ export default function Home({latestPost}) {
                                         </p>
                                     </div>
                                     <div className='flex items-center justify-center m-2 mt-5'>
-                                        <a href="https://www.producthunt.com/posts/plum-lite?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-plum-lite" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=326559&theme=light" alt="Plum Lite - Health benefits for teams as small as 2 in India.  | Product Hunt" style={{width: 180, height: 40}} width="180" height="40" /></a>
+                                        <a href="https://www.producthunt.com/posts/plum-lite?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-plum-lite" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=326559&theme=light" alt="Plum Lite - Health benefits for teams as small as 2 in India.  | Product Hunt" style={{width: 200, height: 42}} width="200" height="42" /></a>
+                                    </div>
+                                    <div className='flex items-center justify-center m-2'>
+                                        <a href="https://www.producthunt.com/posts/plum-lite?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-plum-lite" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=326559&theme=light&period=daily" alt="Plum Lite - Health benefits for teams as small as 2 in India | Product Hunt" style={{width: 200, height: 42}} width="200" height="42" /></a>
                                     </div>
                                 </div>
                             </div>
