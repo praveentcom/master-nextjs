@@ -900,9 +900,9 @@ flatted@^3.2.4:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.4.tgz#28d9969ea90661b5134259f312ab6aa7929ac5e2"
 
-follow-redirects@>=1.14.7, follow-redirects@^1.14.0, follow-redirects@^1.2.4:
-  version "1.14.7"
-  resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.14.7.tgz"
+follow-redirects@>=1.14.8, follow-redirects@^1.14.0, follow-redirects@^1.2.4:
+  version "1.14.8"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.8.tgz#016996fb9a11a100566398b1c6839337d7bfa8fc"
 
 form-data@^4.0.0:
   version "4.0.0"
