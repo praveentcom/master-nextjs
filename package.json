@@ -48,7 +48,7 @@
     "twilio": "^3.71.1",
     "xss": "^1.0.10",
     "yup": "^0.32.11",
-    "follow-redirects": ">=1.14.7"
+    "follow-redirects": ">=1.14.8"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
