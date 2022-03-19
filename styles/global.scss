@@ -16,6 +16,20 @@ html {
     background: #F8F8F8;
 }
 
+.hex {
+  width: 64px;
+  display: inline-block;
+  color: pink;
+}
+
+.hex::before {
+  content: "";
+  display: block;
+  background: pink;
+  padding-top: 90%;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
+
 .blog {
     h1, h2, h3, h4, h5, h6 {
         --tw-text-opacity: 1;

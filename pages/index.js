@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import { BriefcaseIcon, HeartIcon, BookOpenIcon, AnnotationIcon, ArrowRightIcon } from '@heroicons/react/solid'
@@ -41,17 +42,18 @@ export default function Home({latestPost}) {
                 <meta property="og:title" content="Praveen Thirumurugan" />
                 <meta property="og:description" content="Praveen Thirumurugan" />
                 <meta property="og:url" content={'https://www.praveent.com/'} />
-                <meta property="og:image" content="" />
+                <meta property="og:image" content="https://www.praveent.com/images/website.png" />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Praveen Thirumurugan" />
                 <meta name="twitter:description" content="Praveen Thirumurugan" />
                 <meta name="twitter:url" content="https://www.praveent.com/" />
-                <meta name="twitter:image" content="https://www.praveent.com/_next/image/?url=%2Fimages%2Fwebsite.png" />
+                <meta name="twitter:image" content="https://www.praveent.com/images/website.png" />
                 <meta name="twitter:site" content="@praveentcom" />
                 <meta name="twitter:creator" content="@praveentcom" />
-                <script async defer src="https://sa.praveent.com/latest.js"></script>
                 <title>Praveen Thirumurugan</title>
                 <link rel="icon" href="/favicon.ico" />
+                <script src="https://unpkg.com/embeddable-nfts/dist/nft-card.min.js"></script>
+                <script async defer src="https://sa.praveent.com/latest.js"></script>
             </Head>
             <main>
                 <Header />
@@ -117,6 +119,21 @@ export default function Home({latestPost}) {
                                     </div>
                                 </div>
                             }
+                            <div className="mt-4 overflow-hidden bg-white shadow-lg rounded-xl">
+                                <div className="px-6 pt-4 pb-2 border-b-2 border-gray-100">
+                                    <span className="inline-flex text-sm font-semibold text-gray-500">
+                                        <BookOpenIcon className="w-5 h-5 mr-2 text-gray-400" aria-hidden="true" />
+                                        LAST MINTED NFT
+                                    </span>
+                                </div>
+                                <div className="p-6">
+                                    <div className="grid grid-cols-12">
+                                        <a target="_blank" href="https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/57352731342957177417825350713159256617185546397448637473855859195609324978177"> 
+                                            <img className="rounded-xl" src="https://lh3.googleusercontent.com/hL1Pjb7u2F69KLJQ4sn3g4Zda0zVik_A_y_l-rCn85yLHesMMrglUlxnlEHcADY37yM-xy7FGVdR5D-_tkU3fOZdbjwWIauVuk_u=w128" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="grid grid-cols-12 col-span-12 md:col-span-4" style={{alignItems: "flex-start", height: "min-content"}}>
                             <div className="col-span-12 mb-6 overflow-hidden bg-white shadow-lg rounded-xl">
