@@ -34,10 +34,10 @@
     "http": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
     "loadash": "^1.0.0",
-    "log4js": "^6.3.0",
+    "log4js": "^6.4.0",
     "moment": "^2.29.1",
     "mongodb": "^4.1.4",
-    "next": "^12.0.4",
+    "next": "^12.1.0",
     "nextjs-progressbar": "^0.0.13",
     "path": "^0.12.7",
     "react": "^17.0.2",
@@ -48,7 +48,7 @@
     "twilio": "^3.71.1",
     "xss": "^1.0.10",
     "yup": "^0.32.11",
-    "follow-redirects": ">=1.14.7"
+    "follow-redirects": ">=1.14.8"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",
