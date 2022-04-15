@@ -31,6 +31,8 @@ html {
 }
 
 .blog {
+    overflow-x: scroll;
+    
     h1, h2, h3, h4, h5, h6 {
         --tw-text-opacity: 1;
         color: rgba(31, 41, 55, var(--tw-text-opacity));

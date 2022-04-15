@@ -2,19 +2,20 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Header from '../components/header'
 import Footer from '../components/footer'
-import { BriefcaseIcon, HeartIcon, BookOpenIcon, AnnotationIcon, ArrowRightIcon } from '@heroicons/react/solid'
+import { BriefcaseIcon, HeartIcon, BookOpenIcon, AnnotationIcon, ArrowRightIcon, CodeIcon } from '@heroicons/react/solid'
 import { RWebShare } from 'react-web-share'
 import Link from 'next/link'
 import groq from 'groq'
 import imageUrlBuilder from '@sanity/image-url'
-import client from '../lib/client'
+import sanityClient from '../lib/sanity'
+import { fetchPosts } from '../lib/hashnode'
 
 function urlFor (source) {
-    return imageUrlBuilder(client).image(source)
+    return imageUrlBuilder(sanityClient).image(source)
 }
 
 export async function getStaticProps() {
-    const latestPost = await client.fetch(groq`
+    const latestPost = await sanityClient.fetch(groq`
         *[_type == "post" && publishedAt < now()] | order(publishedAt desc) [0]{
             title,
             "categories": categories[]->title,
@@ -23,15 +24,17 @@ export async function getStaticProps() {
             excerpt,
             readingTime
         }
-    `)
+    `);
+    const latestHashnodePost = await fetchPosts({ onlyLatestPost: true });
     return {
         props: {
-            latestPost
+            latestPost,
+            latestHashnodePost
         }
     }
 }
 
-export default function Home({latestPost}) {
+export default function Home({ latestPost, latestHashnodePost }) {
     return (
         <div>
             <Head>
@@ -71,11 +74,11 @@ export default function Home({latestPost}) {
                                 </div>
                             </div>
                             {
-                                <div className="mt-4 overflow-hidden bg-white shadow-lg rounded-xl">
+                                <div className="mt-4 mb-6 overflow-hidden bg-white shadow-lg rounded-xl">
                                     <div className="px-6 pt-4 pb-2 border-b-2 border-gray-100">
                                         <span className="inline-flex text-sm font-semibold text-gray-500">
                                             <BookOpenIcon className="w-5 h-5 mr-2 text-gray-400" aria-hidden="true" />
-                                            LATEST ARTICLE
+                                            LATEST BLOG ARTICLE
                                         </span>
                                     </div>
                                     <div className="p-6">
@@ -119,21 +122,55 @@ export default function Home({latestPost}) {
                                     </div>
                                 </div>
                             }
-                            <div className="mt-4 overflow-hidden bg-white shadow-lg rounded-xl">
-                                <div className="px-6 pt-4 pb-2 border-b-2 border-gray-100">
-                                    <span className="inline-flex text-sm font-semibold text-gray-500">
-                                        <BookOpenIcon className="w-5 h-5 mr-2 text-gray-400" aria-hidden="true" />
-                                        LAST MINTED NFT
-                                    </span>
-                                </div>
-                                <div className="p-6">
-                                    <div className="grid grid-cols-12">
-                                        <a target="_blank" href="https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/57352731342957177417825350713159256617185546397448637473855859195609324978177"> 
-                                            <img className="rounded-xl" src="https://lh3.googleusercontent.com/hL1Pjb7u2F69KLJQ4sn3g4Zda0zVik_A_y_l-rCn85yLHesMMrglUlxnlEHcADY37yM-xy7FGVdR5D-_tkU3fOZdbjwWIauVuk_u=w128" />
-                                        </a>
+                            {
+                                <div className="mt-4 mb-6 overflow-hidden bg-white shadow-lg rounded-xl">
+                                    <div className="px-6 pt-4 pb-2 border-b-2 border-gray-100">
+                                        <span className="inline-flex text-sm font-semibold text-gray-500">
+                                            <CodeIcon className="w-5 h-5 mr-2 text-gray-400" aria-hidden="true" />
+                                            LATEST HASHNODE ARTICLE
+                                        </span>
+                                    </div>
+                                    <div className="p-6">
+                                        <div className="grid grid-cols-12 gap-6">
+                                            <Link href={`/dev-post/${latestHashnodePost.slug}`}>
+                                                <div className="flex items-center justify-center col-span-12 md:col-span-5" style={{cursor: 'pointer'}}>
+                                                    <img className="rounded" width="100%" src={latestHashnodePost ? latestHashnodePost.coverImage : '/images/avatar_light.png' } alt={latestHashnodePost ? latestHashnodePost.title : 'Blog image failed to load'}/>
+                                                </div>
+                                            </Link>
+                                            <div className="flex items-center col-span-12 md:col-span-7">
+                                                <div>
+                                                    <Link href={`/dev-post/${latestHashnodePost.slug}`}>
+                                                        <div style={{cursor: 'pointer'}}>
+                                                            <h4 className="text-xl font-medium leading-6 text-gray-600">{latestHashnodePost.title}</h4>
+                                                            <p className="max-w-2xl mt-2 text-gray-500 text-md">{latestHashnodePost.brief.substring(0, 150) }{ latestHashnodePost.brief.length >= 150 && `...` }</p>
+                                                        </div>
+                                                    </Link>
+                                                    <div className="mt-2">
+                                                        <Link href={`/dev-post/${latestHashnodePost.slug}`}>
+                                                            <button type="button" className="inline-flex items-center px-4 py-1 mt-4 mr-4 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
+                                                                <BookOpenIcon className="w-5 h-5 mr-2 -ml-1 text-gray-400" aria-hidden="true" />
+                                                                Read
+                                                            </button>
+                                                        </Link>
+                                                        <RWebShare data={{ text: latestHashnodePost.slug, url: 'https://www.praveent.com/dev-post/' + latestHashnodePost.slug, title: latestHashnodePost.title }}>
+                                                            <button type="button" className="inline-flex items-center px-4 py-1 mt-4 mr-4 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
+                                                                <AnnotationIcon className="w-5 h-5 mr-2 -ml-1 text-gray-400" aria-hidden="true" />
+                                                                Share
+                                                            </button>
+                                                        </RWebShare>
+                                                        <Link href="/dev-posts">
+                                                            <button type="button" className="inline-flex items-center px-4 py-1 mt-4 mr-4 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500">
+                                                                <ArrowRightIcon className="w-5 h-5 mr-2 -ml-1 text-gray-400" aria-hidden="true" />
+                                                                All articles
+                                                            </button>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            }
                         </div>
                         <div className="grid grid-cols-12 col-span-12 md:col-span-4" style={{alignItems: "flex-start", height: "min-content"}}>
                             <div className="col-span-12 mb-6 overflow-hidden bg-white shadow-lg rounded-xl">
@@ -160,7 +197,7 @@ export default function Home({latestPost}) {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-span-12 overflow-hidden bg-white shadow-lg rounded-xl">
+                            <div className="col-span-12 mb-6 overflow-hidden bg-white shadow-lg rounded-xl">
                                 <div className="px-6 pt-4 pb-2 border-b-2 border-gray-100">
                                     <span className="inline-flex text-sm font-semibold text-gray-500">
                                         <HeartIcon className="w-5 h-5 mr-2 text-gray-400" aria-hidden="true" />
@@ -175,6 +212,23 @@ export default function Home({latestPost}) {
                                         <p className="mt-4 text-center text-gray-500 text-md">
                                             I lead the GDG community in <a style={{textDecorationLine: 'underline'}} href="https://gdg.community.dev/GDG-Cloud-Coimbatore?utm_medium=organizer&utm_source=praveent.com&utm_campaign=website" target="_blank">Coimbatore</a> along with a few folks. We have made an impact in several thousand lives so far.
                                         </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-span-12 mb-6 overflow-hidden bg-white shadow-lg rounded-xl">
+                                <div className="px-6 pt-4 pb-2 border-b-2 border-gray-100">
+                                    <span className="inline-flex text-sm font-semibold text-gray-500">
+                                        <BookOpenIcon className="w-5 h-5 mr-2 text-gray-400" aria-hidden="true" />
+                                        NFT COLLECTION
+                                    </span>
+                                </div>
+                                <div className="p-6">
+                                    <div className="grid grid-cols-12">
+                                        <div className="col-span-2">
+                                            <a target="_blank" href="https://opensea.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/57352731342957177417825350713159256617185546397448637473855859195609324978177"> 
+                                                <img className="rounded-md" src="https://lh3.googleusercontent.com/hL1Pjb7u2F69KLJQ4sn3g4Zda0zVik_A_y_l-rCn85yLHesMMrglUlxnlEHcADY37yM-xy7FGVdR5D-_tkU3fOZdbjwWIauVuk_u=w128" />
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
